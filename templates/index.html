@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>To Do List</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 80%;
+        }
+        th, td {
+            border: 1px solid #333;
+            padding: 8px;
+        }
+        th {
+            background-color: #eee;
+        }
+    </style>
+</head>
+<body>
+
+<h1>To Do List</h1>
+
+<!-- To Do Items Table -->
+<table>
+    <tr>
+        <th>Task</th>
+        <th>Email</th>
+        <th>Priority</th>
+    </tr>
+    {% for item in todos %}
+    <tr>
+        <td>{{ item.task }}</td>
+        <td>{{ item.email }}</td>
+        <td>{{ item.priority }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<br>
+
+<!-- Add To Do Item Form -->
+<h2>Add New To Do Item</h2>
+<form method="POST" action="/submit">
+    <label>
+        Task:
+        <input type="text" name="task" required>
+    </label>
+    <br><br>
+
+    <label>
+        Email:
+        <input type="text" name="email" required>
+    </label>
+    <br><br>
+
+    <label>
+        Priority:
+        <select name="priority">
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+        </select>
+    </label>
+    <br><br>
+
+    <button type="submit">Add To Do Item</button>
+</form>
+
+<br>
+
+<!-- Clear List Form -->
+<form method="POST" action="/clear">
+    <button type="submit">Clear</button>
+</form>
+
+</body>
+</html>
